@@ -8,7 +8,7 @@ export const startLoginEmailPassword = (email, password) => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(({ user }) => {
-        dispatch(login(user.email, user.uid, user.displayName));
+        dispatch(login(user.email, user.uid, user.displayName, user.photoURL));
       })
       .catch((e) => {
         Swal.fire('Error', e.message, 'error');
@@ -23,7 +23,7 @@ export const startRegisterWithEmailPasswordName = (email, password, name) => {
       .createUserWithEmailAndPassword(email, password)
       .then(async ({ user }) => {
         await user.updateProfile({ displayName: name });
-        dispatch(login(user.email, user.uid, user.displayName));
+        dispatch(login(user.email, user.uid, user.displayName, user.photoURL));
       })
       .catch((e) => Swal.fire('Error', e.message, 'error'));
   };
@@ -35,7 +35,8 @@ export const startGoogleLogin = () => {
       .auth()
       .signInWithPopup(googleAuthProvider)
       .then(({ user }) => {
-        dispatch(login(user.email, user.uid, user.displayName));
+        //console.log(user.photoURL);
+        dispatch(login(user.email, user.uid, user.displayName, user.photoURL));
       });
   };
 };
@@ -47,9 +48,9 @@ export const startLogout = () => {
   };
 };
 
-export const login = (email, uid, displayName, password) => ({
+export const login = (email, uid, displayName, photoURL) => ({
   type: types.login,
-  payload: { email, uid, displayName }
+  payload: { email, uid, displayName, photoURL }
 });
 
 export const logout = () => ({

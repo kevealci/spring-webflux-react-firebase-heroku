@@ -17,15 +17,15 @@ import Footer from './components/Footer';
 
 const App = () => {
   const dispatch = useDispatch();
-  const { uid, password } = useSelector((state) => state.auth);
+  const { uid } = useSelector((state) => state.auth);
 
   const [checking, setChecking] = useState(true);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user?.uid) {
-        //console.log(user);
-        dispatch(login(user.email, user.uid, user.displayName));
+        console.log(user);
+        dispatch(login(user.email, user.uid, user.displayName, user.photoURL));
       }
 
       setChecking(false);

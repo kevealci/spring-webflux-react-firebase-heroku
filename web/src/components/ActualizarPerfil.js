@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useForm } from '../customHooks/useForm';
 import { firebase } from '../firebase/firebaseConfig';
 import Swal from 'sweetalert2';

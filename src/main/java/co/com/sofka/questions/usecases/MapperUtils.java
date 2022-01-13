@@ -19,6 +19,8 @@ public class MapperUtils {
             answer.setUserId(updateAnswer.getUserId());
             answer.setAnswer(updateAnswer.getAnswer());
             answer.setAnswerId(updateAnswer.getAnswerId());
+            answer.setUserName(updateAnswer.getUserName());
+            answer.setPhotoURL(updateAnswer.getPhotoURL());
             return answer;
         };
     }
@@ -32,6 +34,8 @@ public class MapperUtils {
             question.setQuestion(updateQuestion.getQuestion());
             question.setUserId(updateQuestion.getUserId());
             question.setType(updateQuestion.getType());
+            question.setUserName(updateQuestion.getUserName());
+            question.setPhotoURL(updateQuestion.getPhotoURL());
             return question;
         };
     }
@@ -42,7 +46,9 @@ public class MapperUtils {
                 entity.getUserId(),
                 entity.getQuestion(),
                 entity.getType(),
-                entity.getCategory()
+                entity.getCategory(),
+                entity.getUserName(),
+                entity.getPhotoURL()
         );
     }
 
@@ -51,7 +57,9 @@ public class MapperUtils {
                 entity.getId(),
                 entity.getUserId(),
                 entity.getAnswer(),
-                entity.getAnswerId()
+                entity.getAnswerId(),
+                entity.getUserName(),
+                entity.getPhotoURL()
         );
     }
 }

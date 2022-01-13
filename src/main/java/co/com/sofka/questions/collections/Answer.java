@@ -10,9 +10,26 @@ public class Answer {
     private String userId;
     private String questionId;
     private String answer;
-
     private String answerId;
     private Integer position;
+    private String userName;
+    private String photoURL;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPhotoURL() {
+        return photoURL;
+    }
+
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
+    }
 
     public String getAnswerId() {
         return answerId;

@@ -34,7 +34,7 @@ const SingleQuestionPage = ({ match }) => {
   };
 
   return (
-    <section>
+    <section className="mt-3">
       {renderQuestion()}
       {userId && (
         <Link to={'/answer/' + id} className="button right">

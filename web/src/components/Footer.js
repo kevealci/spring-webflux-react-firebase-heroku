@@ -6,7 +6,9 @@ const Footer = () => {
       <p className="card-title mt-2">
         Aplicacion de Preguntas y Respuestas fullStack con React y SpringBoot (WebFlux)
       </p>
-      <p className="card-text mb-2">Made By Kevealci 😁</p>
+      <p className="card-text mb-2">
+        Made By Kevealci <span role={'img'}>😁</span>
+      </p>
     </div>
   );
 };

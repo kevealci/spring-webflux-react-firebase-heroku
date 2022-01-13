@@ -12,7 +12,24 @@ public class Question {
     private String question;
     private String type;
     private String category;
+    private String userName;
+    private String photoURL;
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPhotoURL() {
+        return photoURL;
+    }
+
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
+    }
 
     public String getId() {
         return id;

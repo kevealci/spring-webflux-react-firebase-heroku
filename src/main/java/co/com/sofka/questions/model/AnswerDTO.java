@@ -16,17 +16,37 @@ public class AnswerDTO {
     private Integer position;
 
     private String answerId;
+    private String userName;
+    private String photoURL;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPhotoURL() {
+        return photoURL;
+    }
+
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
+    }
 
 
     public AnswerDTO() {
 
     }
 
-    public AnswerDTO(@NotBlank String questionId, @NotBlank String userId, @NotBlank String answer, @NotBlank String answerId) {
+    public AnswerDTO(@NotBlank String questionId, @NotBlank String userId, @NotBlank String answer, @NotBlank String answerId, String userName, String photoURL) {
         this.userId = userId;
         this.questionId = questionId;
         this.answer = answer;
         this.answerId = answerId;
+        this.userName = userName;
+        this.photoURL = photoURL;
     }
 
     public String getAnswerId() {

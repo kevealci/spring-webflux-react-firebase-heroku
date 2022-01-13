@@ -18,6 +18,25 @@ public class QuestionDTO {
     @NotBlank
     private String category;
     private List<AnswerDTO> answers;
+    private String userName;
+    private String photoURL;
+
+    public String getUserName() {
+        return userName;
+    }
+
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPhotoURL() {
+        return photoURL;
+    }
+
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
+    }
 
 
     public QuestionDTO() {
@@ -29,14 +48,17 @@ public class QuestionDTO {
         this.question = question;
         this.type = type;
         this.category = category;
+
     }
 
-    public QuestionDTO(String id, String userId, String question, String type, String category) {
+    public QuestionDTO(String id, String userId, String question, String type, String category, String userName, String photoUrl) {
         this.id = id;
         this.userId = userId;
         this.question = question;
         this.type = type;
         this.category = category;
+        this.userName = userName;
+        this.photoURL = photoUrl;
     }
 
     public List<AnswerDTO> getAnswers() {

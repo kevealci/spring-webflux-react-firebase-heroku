@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { deleteAnswer, fetchQuestion } from '../actions/questionActions';
 
-export const Answer = ({ answer, match }) => {
+export const Answer = ({ answer }) => {
   const { uid } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -30,8 +30,20 @@ export const Answer = ({ answer, match }) => {
 
   return (
     <aside className="answer">
-      <p>{answer.answer}</p>
-      {uid === answer.userId && <button onClick={handleClick}>Eliminar</button>}
+      <div className="d-flex">
+        <div className="me-4">
+          {answer.photoURL ? (
+            <img src={`${answer.photoURL}`} />
+          ) : (
+            <img style={{ width: '100px' }} src="/avatar.jpg" />
+          )}
+          <p>{answer.userName}</p>
+        </div>
+        <div>
+          <p>{answer.answer}</p>
+          {uid === answer.userId && <button onClick={handleClick}>Eliminar</button>}
+        </div>
+      </div>
     </aside>
   );
 };

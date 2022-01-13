@@ -3,7 +3,8 @@ import { types } from '../types/types';
 export const initialState = {
   email: null,
   uid: null,
-  name: null
+  name: null,
+  photoURL: null
 };
 
 export default function authReducer(state = initialState, action) {
@@ -13,7 +14,8 @@ export default function authReducer(state = initialState, action) {
       return {
         email: payload.email,
         uid: payload.uid,
-        name: payload.displayName
+        name: payload.displayName,
+        photoURL: payload.photoURL
       };
     case types.logout:
       return initialState;

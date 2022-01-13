@@ -1,69 +1,70 @@
-import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
-import { postQuestion } from '../actions/questionActions'
-import { connect } from 'react-redux'
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
+import { postQuestion } from '../actions/questionActions';
+import { useSelector, useDispatch } from 'react-redux';
 
-const FormPage = ({ dispatch, loading, redirect, userId }) => {
-    const { register, handleSubmit } = useForm();
-    const history = useHistory();
+const FormPage = () => {
+  const { register, handleSubmit } = useForm();
+  const history = useHistory();
 
-    const onSubmit = data => {
-        data.userId = userId;
-        dispatch(postQuestion(data));
-    };
+  const { uid: userId, photoURL, name } = useSelector((state) => state.auth);
+  const { loading, hasErrors, redirect } = useSelector((state) => state.question);
 
-    useEffect(() => {
-        if (redirect) {
-            history.push(redirect);
-        }
-    }, [redirect, history])
+  const dispatch = useDispatch();
 
-    return (
-        <section>
-            <h1>New Question</h1>
+  const onSubmit = (data) => {
+    data.userId = userId;
+    data.photoURL = photoURL;
+    data.userName = name;
+    dispatch(postQuestion(data));
+  };
 
-            <form onSubmit={handleSubmit(onSubmit)}>
+  useEffect(() => {
+    if (redirect) {
+      history.push(redirect);
+    }
+  }, [redirect, history]);
 
-                <div>
-                    <label for="type">Type</label>
-                    <select {...register("type")} id="">
-                        <option value="OPEN (LONG OPEN BOX)">OPEN (LONG OPEN BOX)</option>
-                        <option value="OPINION (SHORT OPEN BOX)">OPINION (SHORT OPEN BOX)</option>
-                        <option value="WITH RESULT (OPEN BOX WITH LINK)">WITH RESULT (OPEN BOX WITH LINK)</option>
-                        <option value="WITH EVIDENCE (OPEN BOX WITH VIDEO)">WITH EVIDENCE (OPEN BOX WITH VIDEO)</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="category">Category</label>
-                    <select {...register("category")} id="category">
-                        <option value="TECHNOLOGY AND COMPUTER">TECHNOLOGY AND COMPUTER</option>
-                        <option value="SCIENCES">SCIENCES</option>
-                        <option value="SOFTWARE DEVELOPMENT">SOFTWARE DEVELOPMENT</option>
-                        <option value="SOCIAL SCIENCES">SOCIAL SCIENCES</option>
-                        <option value="LANGUAGE">LANGUAGE</option>
+  return (
+    <section>
+      <h1>New Question</h1>
 
-                    </select>
-                </div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <label htmlFor="type">Type</label>
+          <select {...register('type')} id="">
+            <option value="OPEN (LONG OPEN BOX)">OPEN (LONG OPEN BOX)</option>
+            <option value="OPINION (SHORT OPEN BOX)">OPINION (SHORT OPEN BOX)</option>
+            <option value="WITH RESULT (OPEN BOX WITH LINK)">
+              WITH RESULT (OPEN BOX WITH LINK)
+            </option>
+            <option value="WITH EVIDENCE (OPEN BOX WITH VIDEO)">
+              WITH EVIDENCE (OPEN BOX WITH VIDEO)
+            </option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="category">Category</label>
+          <select {...register('category')} id="category">
+            <option value="TECHNOLOGY AND COMPUTER">TECHNOLOGY AND COMPUTER</option>
+            <option value="SCIENCES">SCIENCES</option>
+            <option value="SOFTWARE DEVELOPMENT">SOFTWARE DEVELOPMENT</option>
+            <option value="SOCIAL SCIENCES">SOCIAL SCIENCES</option>
+            <option value="LANGUAGE">LANGUAGE</option>
+          </select>
+        </div>
 
-                <div>
-                    <label for="question">Question</label>
-                    <textarea id="question" {...register("question", { required: true, maxLength: 300 })} />
-                </div>
-                <button type="submit" className="button" disabled={loading} >{
-                    loading ? "Saving ...." : "Save"
-                }</button>
-            </form>
-        </section>
+        <div>
+          <label htmlFor="question">Question</label>
+          <textarea id="question" {...register('question', { required: true, maxLength: 300 })} />
+        </div>
+        <button type="submit" className="button" disabled={loading}>
+          {loading ? 'Saving ....' : 'Save'}
+        </button>
+      </form>
+    </section>
+  );
+};
 
-    );
-}
-
-const mapStateToProps = state => ({
-    loading: state.question.loading,
-    redirect: state.question.redirect,
-    hasErrors: state.question.hasErrors,
-    userId: state.auth.uid
-})
-
-export default connect(mapStateToProps)(FormPage)
+export default FormPage;
