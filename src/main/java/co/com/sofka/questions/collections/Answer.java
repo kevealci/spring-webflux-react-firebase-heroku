@@ -10,7 +10,17 @@ public class Answer {
     private String userId;
     private String questionId;
     private String answer;
+
+    private String answerId;
     private Integer position;
+
+    public String getAnswerId() {
+        return answerId;
+    }
+
+    public void setAnswerId(String answerId) {
+        this.answerId = answerId;
+    }
 
     public Integer getPosition() {
         return position;

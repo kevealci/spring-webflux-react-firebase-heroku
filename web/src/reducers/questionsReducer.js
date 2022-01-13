@@ -1,22 +1,22 @@
-import * as actions from '../actions/questionActions'
+import * as actions from '../actions/questionActions';
 
 export const initialState = {
-  loading: true,
+  loading: false,
   hasErrors: false,
   questions: [],
   question: {},
   redirect: null
-}
+};
 
 export default function questionsReducer(state = initialState, action) {
   switch (action.type) {
     case actions.LOADING:
-      return { ...state, loading: true }
+      return { ...state, loading: true };
     case actions.LOADED_SUCCESS:
-      return { ...state, ...action.payload, loading: false, hasErrors: false }
+      return { ...state, ...action.payload, loading: false, hasErrors: false };
     case actions.LOADED_FAILURE:
-      return { ...state, loading: false, hasErrors: true }
+      return { ...state, loading: false, hasErrors: true };
     default:
-      return state
+      return state;
   }
 }

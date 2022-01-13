@@ -1,33 +1,30 @@
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchQuestions } from '../actions/questionActions'
-import { Question } from '../components/Question'
+import { fetchQuestions } from '../actions/questionActions';
+import { Question } from '../components/Question';
 
-const QuestionsPage = ({ dispatch, loading, questions, hasErrors }) => {
-    useEffect(() => {
-        dispatch(fetchQuestions())
-    }, [dispatch])
-    
-    const renderQuestions = () => {
-        if (loading) return <p>Loading questions...</p>
-        if (hasErrors) return <p>Unable to display questions.</p>
+const QuestionsPage = () => {
+  const { loading, questions, hasErrors } = useSelector((state) => state.question);
+  const dispatch = useDispatch();
 
-        return questions.map(question => <Question key={question.id} question={question} excerpt />)
-    }
+  useEffect(() => {
+    dispatch(fetchQuestions());
+  }, [dispatch]);
 
-    return (
-        <section>
-            <h1>Questions</h1>
-            {renderQuestions()}
-        </section>
-    )
-}
+  const renderQuestions = () => {
+    if (loading) return <p>Loading questions...</p>;
+    if (hasErrors) return <p>Unable to display questions.</p>;
 
-const mapStateToProps = state => ({
-    loading: state.question.loading,
-    questions: state.question.questions,
-    hasErrors: state.question.hasErrors,
-})
+    return questions.map((question) => <Question key={question.id} question={question} excerpt />);
+  };
 
-export default connect(mapStateToProps)(QuestionsPage)
+  return (
+    <section>
+      <h1>Questions</h1>
+      {renderQuestions()}
+    </section>
+  );
+};
+
+export default QuestionsPage;

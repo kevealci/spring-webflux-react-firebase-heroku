@@ -21,7 +21,6 @@ const App = () => {
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
-      console.log('user app', user);
       if (user?.uid) {
         dispatch(login(user.email, user.uid, user.displayName));
       }

@@ -15,15 +15,26 @@ public class AnswerDTO {
 
     private Integer position;
 
+    private String answerId;
+
 
     public AnswerDTO() {
 
     }
 
-    public AnswerDTO(@NotBlank String questionId, @NotBlank String userId, @NotBlank String answer) {
+    public AnswerDTO(@NotBlank String questionId, @NotBlank String userId, @NotBlank String answer, @NotBlank String answerId) {
         this.userId = userId;
         this.questionId = questionId;
         this.answer = answer;
+        this.answerId = answerId;
+    }
+
+    public String getAnswerId() {
+        return answerId;
+    }
+
+    public void setAnswerId(String answerId) {
+        this.answerId = answerId;
     }
 
     public Integer getPosition() {
