@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loader from './components/Loader';
 import Perfil from './pages/Perfil';
 import Footer from './components/Footer';
+import UpdateQuestionPage from './pages/UpdateQuestionPage';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ const App = () => {
             <Route exact path="/answer/:id" component={AnswerFormPage} />
             <Route exact path="/new" component={QuestionFormPage} />
             <Route exact path="/perfil" component={Perfil} />
+            <Route exact path="/update-question/:id" component={UpdateQuestionPage} />
             <Redirect to="/" />
           </Switch>
           <Footer />

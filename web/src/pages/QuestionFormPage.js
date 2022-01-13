@@ -9,7 +9,7 @@ const FormPage = () => {
   const history = useHistory();
 
   const { uid: userId, photoURL, name } = useSelector((state) => state.auth);
-  const { loading, hasErrors, redirect } = useSelector((state) => state.question);
+  const { loading, redirect } = useSelector((state) => state.question);
 
   const dispatch = useDispatch();
 

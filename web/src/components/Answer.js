@@ -41,7 +41,11 @@ export const Answer = ({ answer }) => {
         </div>
         <div>
           <p>{answer.answer}</p>
-          {uid === answer.userId && <button onClick={handleClick}>Eliminar</button>}
+          {uid === answer.userId && (
+            <button className="btn btn-danger" onClick={handleClick}>
+              Eliminar
+            </button>
+          )}
         </div>
       </div>
     </aside>
