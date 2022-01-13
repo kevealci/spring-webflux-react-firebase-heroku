@@ -13,6 +13,7 @@ import OwnerQuestionsPage from './pages/OwnerQuestionsPage';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from './components/Loader';
 import Perfil from './pages/Perfil';
+import Footer from './components/Footer';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ const App = () => {
   return (
     <Router>
       {uid ? (
-        <>
+        <div className="d-flex flex-column justify-content-between" style={{ height: '100vh' }}>
           <PrivateNavbar />
           <Switch>
             <Route
@@ -57,9 +58,10 @@ const App = () => {
             <Route exact path="/perfil" component={Perfil} />
             <Redirect to="/" />
           </Switch>
-        </>
+          <Footer />
+        </div>
       ) : (
-        <>
+        <div>
           <PublicNavbar />
           <Switch>
             <Route
@@ -74,7 +76,8 @@ const App = () => {
             <Route exact path="/answer/:id" component={AnswerFormPage} />
             <Redirect to="/" />
           </Switch>
-        </>
+          <Footer />
+        </div>
       )}
     </Router>
   );
