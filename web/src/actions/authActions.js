@@ -47,7 +47,7 @@ export const startLogout = () => {
   };
 };
 
-export const login = (email, uid, displayName) => ({
+export const login = (email, uid, displayName, password) => ({
   type: types.login,
   payload: { email, uid, displayName }
 });

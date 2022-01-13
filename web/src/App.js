@@ -12,16 +12,18 @@ import AnswerFormPage from './pages/AnswerFormPage';
 import OwnerQuestionsPage from './pages/OwnerQuestionsPage';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from './components/Loader';
+import Perfil from './pages/Perfil';
 
 const App = () => {
   const dispatch = useDispatch();
-  const { uid } = useSelector((state) => state.auth);
+  const { uid, password } = useSelector((state) => state.auth);
 
   const [checking, setChecking] = useState(true);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user?.uid) {
+        //console.log(user);
         dispatch(login(user.email, user.uid, user.displayName));
       }
 
@@ -46,11 +48,13 @@ const App = () => {
                 return <HomePage>{/* <SignOut dispatch={dispatch} /> */}</HomePage>;
               }}
             />
+
             <Route exact path="/questions" component={QuestionsPage} />
             <Route exact path="/question/:id" component={SingleQuestionPage} />
             <Route exact path="/list" component={OwnerQuestionsPage} />
             <Route exact path="/answer/:id" component={AnswerFormPage} />
             <Route exact path="/new" component={QuestionFormPage} />
+            <Route exact path="/perfil" component={Perfil} />
             <Redirect to="/" />
           </Switch>
         </>
